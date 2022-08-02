@@ -6,10 +6,10 @@ Feature: Registration
     The password and Re-enter password should match.
 
 
-      @login
+
       Scenario: User registers successfully with valid data
-        Given the user wants to register
-        When the user clicks register button
+        Given the user clicks register button
         And populate username "Marvin" and password "1234"
         And Re-enter password "1234"
+        When the user submits the registration
         Then the user is registered successfully

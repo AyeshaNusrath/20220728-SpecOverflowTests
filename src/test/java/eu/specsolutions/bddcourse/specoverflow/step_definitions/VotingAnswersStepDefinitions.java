@@ -42,5 +42,6 @@ public class VotingAnswersStepDefinitions {
     public void voteIsSuccessfullyCountedForThatAnswer() {
 
         assertEquals(voteCount,browserContext.getDriver().findElement(By.xpath("//button[@class='vote-up']")).getText());
+        assertEquals("Marvin",browserContext.getDriver().findElement(By.id("LoggedInUser")).getText());
     }
 }

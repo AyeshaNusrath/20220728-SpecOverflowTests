@@ -25,8 +25,7 @@ public class AskingQuestionsStepDefinitions {
     public void theUserStartEnteringTheQuestionTitle(String PartialQuestion) {
         browserContext.getDriver().get(browserContext.getBaseUrl()+"Ask");
         browserContext.getDriver().findElement(By.id("TitleInput")).sendKeys("What is");
-        browserContext.pauseForDebug();
-        browserContext.pauseForDebug();
+
 
 
     }
@@ -50,8 +49,7 @@ public class AskingQuestionsStepDefinitions {
         browserContext.getDriver().findElement(By.id("BodyInput")).sendKeys("What is  JUnit? \n" +
                                                                                 "I want to learn about JUnit. \n" +
                                                                                 "As Junit is the base of Automation testing.");
-        browserContext.pauseForDebug();
-        browserContext.pauseForDebug();
+
 
 
     }
@@ -60,13 +58,14 @@ public class AskingQuestionsStepDefinitions {
     public void theUserClicksOnPostYourQuestionButton() {
 
         browserContext.getDriver().findElement(By.id("PostQuestionButton")).click();
-        browserContext.pauseForDebug();
+
+
     }
 
     @Then("the question is submitted")
     public void theQuestionIsSubmitted() {
 
-        assertEquals("What is JUnit? - Spec Overflow", browserContext.getDriver().getTitle());
+        browserContext.waitForPageToBeLoaded("What is JUnit? - Spec Overflow");
         assertEquals("Marvin",browserContext.getDriver().findElement(By.id("LoggedInUser")).getText());
     }
 

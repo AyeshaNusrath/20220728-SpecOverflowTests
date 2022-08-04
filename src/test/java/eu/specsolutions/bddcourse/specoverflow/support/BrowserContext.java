@@ -2,11 +2,14 @@ package eu.specsolutions.bddcourse.specoverflow.support;
 
 import io.cucumber.spring.ScenarioScope;
 import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
@@ -55,5 +58,14 @@ public class BrowserContext {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public void waitForPageToBeLoaded(String expectedTitle) {
+        new WebDriverWait(driver, 5)
+                .until(ExpectedConditions.and(
+                        ExpectedConditions.titleIs(expectedTitle),
+                        ExpectedConditions.attributeToBe(By.tagName("body"), "data-ajax-loaded", "1")));
+
+
     }
 }

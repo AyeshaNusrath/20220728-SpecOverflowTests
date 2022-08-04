@@ -21,32 +21,16 @@ public class HomeStepDefinitions {
     @Autowired
     private BrowserContext browserContext;
 
-//    @When("some action is performed using the browser")
-//    public void someActionIsPerformedUsingTheBrowser() {
-//
-//        browserContext.getDriver().get(browserContext.getBaseUrl() + "Questions");
-//        browserContext.pauseForDebug();
-//    }
-
 
     @Given("the user is logged in")
     public void theUserIsLoggedIn() {
 
-        browserContext.getDriver().get("https://specflowmasterclassspecoverflowweb20220706204956.azurewebsites.net/Login");
-
-       // browserContext.getDriver().findElement(By.xpath("//a[text()='Login']")).click();
+        browserContext.getDriver().get("https://specflowmasterclassspecoverflowweb20220706204956.azurewebsites.net/" + "Login");
 
         browserContext.getDriver().findElement(By.id("Name")).sendKeys("Marvin");
-        browserContext.pauseForDebug();
         browserContext.getDriver().findElement(By.id("Password")).sendKeys("1234");
-        browserContext.pauseForDebug();
-//        assertEquals("Marvin", browserContext.getDriver().findElement(By.id("Name")).getText());
-//        assertEquals("1234", browserContext.getDriver().findElement(By.id("Password")).getText());
-
         browserContext.getDriver().findElement(By.cssSelector("input[type=submit]")).click();
-        browserContext.pauseForDebug();
 
-        assertEquals("Home - Spec Overflow", browserContext.getDriver().getTitle());
 
 
     }
@@ -54,9 +38,8 @@ public class HomeStepDefinitions {
     @When("the user checks the home page")
     public void theUserChecksTheHomePage() {
 
-        browserContext.getDriver().get("https://specflowmasterclassspecoverflowweb20220706204956.azurewebsites.net/");
-        browserContext.pauseForDebug();
-        assertEquals("https://specflowmasterclassspecoverflowweb20220706204956.azurewebsites.net/", browserContext.getDriver().getCurrentUrl());
+        browserContext.getBaseUrl();
+        browserContext.waitForPageToBeLoaded("Home - Spec Overflow");
         assertEquals("Home - Spec Overflow", browserContext.getDriver().getTitle());
     }
 

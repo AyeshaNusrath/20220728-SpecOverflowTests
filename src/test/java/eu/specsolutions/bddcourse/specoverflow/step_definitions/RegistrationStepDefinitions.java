@@ -11,6 +11,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -48,13 +51,15 @@ public class RegistrationStepDefinitions {
     @When("the user submits the registration")
     public void theUserSubmitsTheRegistration() {
         browserContext.getDriver().findElement(By.id("RegisterButton")).click();
-        browserContext.pauseForDebug();
-        browserContext.pauseForDebug();
+
     }
 
     @Then("the user is registered successfully")
     public void theUserIsRegisteredSuccessfully() {
-        assertEquals("Login - Spec Overflow",browserContext.getDriver().getTitle());
+
+        new WebDriverWait(browserContext.getDriver(),5)
+                                        .until(ExpectedConditions.titleIs("Login - Spec Overflow"));
+
     }
 
 

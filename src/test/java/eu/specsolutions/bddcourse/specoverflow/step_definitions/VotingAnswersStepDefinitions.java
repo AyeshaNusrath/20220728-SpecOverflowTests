@@ -27,17 +27,10 @@ public class VotingAnswersStepDefinitions {
     public void theUserGivesVoteForAnAnswer() {
 
         browserContext.getDriver().get(browserContext.getBaseUrl());
-
-        browserContext.pauseForDebug();
-        browserContext.pauseForDebug();
-        browserContext.getDriver().findElement(By.xpath("//*[@id=\"Questions\"]/li[2]/div/div[4]/div[1]/a")).click();
-        //*[@id="Questions"]/li[2]/div/div[4]/div[1]/a
-        browserContext.pauseForDebug();
-        browserContext.pauseForDebug();
-        browserContext.pauseForDebug();
-        voteCount = browserContext.getDriver().findElement(By.xpath("//*[@id=\"Answers\"]/li[1]/div/div[1]/div/div")).getText();
-        //button[@class='vote-up']
-        browserContext.getDriver().findElement(By.xpath("//*[@id=\"Answers\"]/li[1]/div/div[1]/div/button[1]")).click();
+        browserContext.waitForPageToBeLoaded("Home - Spec Overflow");
+        browserContext.getDriver().findElement(By.cssSelector("#Questions li:nth-of-type(2) a")).click();
+        voteCount = browserContext.getDriver().findElement(By.cssSelector("div.current-votes")).getText();
+        browserContext.getDriver().findElement(By.cssSelector("button.vote-up")).click();
 
 
     }
@@ -45,7 +38,8 @@ public class VotingAnswersStepDefinitions {
     @Then("vote is successfully counted for that answer")
     public void voteIsSuccessfullyCountedForThatAnswer() {
 
-        assertEquals(voteCount,browserContext.getDriver().findElement(By.xpath("//*[@id=\"Answers\"]/li[1]/div/div[1]/div/div")).getText());
+        assertEquals(voteCount,browserContext.getDriver().findElement(By.cssSelector("div.current-votes")).getText());
+
         assertEquals("Marvin",browserContext.getDriver().findElement(By.id("LoggedInUser")).getText());
     }
 }

@@ -26,12 +26,11 @@ public class VotingAnswersStepDefinitions {
     @When("the user gives vote for an answer")
     public void theUserGivesVoteForAnAnswer() {
 
-        browserContext.getDriver().get(browserContext.getBaseUrl()+"Question?id=291edce5-e68b-449b-bbad-fe9eb6d4cd74");
+        browserContext.getDriver().get(browserContext.getBaseUrl());
+
         browserContext.pauseForDebug();
         browserContext.pauseForDebug();
-        //browserContext.getDriver().findElement(By.xpath("//a[text()='How to write better BDD scenarios?']")).click();
-        //String Question = browserContext.getDriver().findElement(By.partialLinkText("How to write better BDD ")).getText();
-        //System.out.println("The question is: %s%n" +Question);
+        browserContext.getDriver().findElement(By.xpath("//*[@id=\"Questions\"]/li[2]/div/div[4]/div[1]/a")).click();
         voteCount = browserContext.getDriver().findElement(By.xpath("//button[@class='vote-up']")).getText();
         browserContext.getDriver().findElement(By.xpath("//button[@class='vote-up']")).click();
 

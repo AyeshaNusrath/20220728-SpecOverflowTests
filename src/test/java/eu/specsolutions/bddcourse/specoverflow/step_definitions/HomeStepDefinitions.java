@@ -25,7 +25,7 @@ public class HomeStepDefinitions {
     @Given("the user is logged in")
     public void theUserIsLoggedIn() {
 
-        browserContext.getDriver().get("https://specflowmasterclassspecoverflowweb20220706204956.azurewebsites.net/" + "Login");
+        browserContext.getDriver().get(browserContext.getBaseUrl()+ "Login") ;
 
         browserContext.getDriver().findElement(By.id("Name")).sendKeys("Marvin");
         browserContext.getDriver().findElement(By.id("Password")).sendKeys("1234");
@@ -38,7 +38,7 @@ public class HomeStepDefinitions {
     @When("the user checks the home page")
     public void theUserChecksTheHomePage() {
 
-        browserContext.getBaseUrl();
+        browserContext.getDriver().get(browserContext.getBaseUrl());
         browserContext.waitForPageToBeLoaded("Home - Spec Overflow");
         assertEquals("Home - Spec Overflow", browserContext.getDriver().getTitle());
     }
